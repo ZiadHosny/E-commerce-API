@@ -19,19 +19,12 @@ export const deleteReview = deleteOneById(reviewModel, "Review")
 const createOne = catchAsyncError(async (req: RequestAuth, res: Response, next: NextFunction) => {
     req.body.user = req.user._id
 
-    console.log({
-        user: req.user._id,
-        product: req.body.product
-    })
-
     const isReview = await reviewModel.findOne({
         user: req.user._id,
         product: req.body.product
     })
 
     if (isReview) return next(new AppError("you created a review before", 409));
-
-    console.log(req.body)
 
     const result = new reviewModel({ ...req.body })
 
