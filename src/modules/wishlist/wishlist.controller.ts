@@ -8,7 +8,7 @@ export const addToWishlist = catchAsyncError(async (req: RequestAuth, res: Respo
     const { product } = req.body;
 
     const user = await userModel.findByIdAndUpdate(req.user._id, { $addToSet: { wishlist: product } }, { new: true });
-    !user && next(new AppError(`Review not found `, 404));
+    !user && next(new AppError(`User not found `, 404));
 
     user && res.json({ message: "success", user: user.wishlist });
 });
@@ -18,7 +18,7 @@ export const removeFromWishlist = catchAsyncError(async (req: RequestAuth, res: 
     const { product } = req.body;
 
     const user = await userModel.findByIdAndUpdate(req.user._id, { $pull: { wishlist: product } }, { new: true });
-    !user && next(new AppError(`Review not found `, 404));
+    !user && next(new AppError(`User not found `, 404));
 
     user && res.json({ message: "success", user: user.wishlist });
 });
@@ -28,7 +28,7 @@ export const getAllUserWishlist = catchAsyncError(async (req: RequestAuth, res: 
 
 
     const user = await userModel.findOne({ _id: req.user._id }).populate('wishlist')
-    !user && next(new AppError(`Review not found `, 404));
+    !user && next(new AppError(`User not found `, 404));
 
     user && res.json({ message: "success", user: user.wishlist });
 });
