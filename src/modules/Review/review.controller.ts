@@ -1,18 +1,10 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Response } from "express";
 import { reviewModel } from "../../model/review.model.js";
 import { AppError, catchAsyncError } from "../../utils/ErrorHandler.js";
 import { getOneById, deleteOneById, getAll } from "../handlers/factor.handlers.js";
-
-
-export interface RequestAuth extends Request {
-    user: {
-        role: string
-        _id: string
-    }
-}
+import { RequestAuth } from "../../utils/types.js";
 
 export const getAllreviews = getAll(reviewModel)
-
 export const getReviewById = getOneById(reviewModel, "Review")
 export const deleteReview = deleteOneById(reviewModel, "Review")
 
