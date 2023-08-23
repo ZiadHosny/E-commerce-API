@@ -9,6 +9,7 @@ import couponRouter from "./coupon/coupon.router.js";
 import reviewRouter from "./Review/review.router.js";
 import wishlistRouter from "./wishlist/wishlist.router.js";
 import addressRouter from "./address/address.router.js";
+import cartRouter from "./cart/cart.router.js";
 
 const appRouter = express.Router();
 
@@ -22,6 +23,7 @@ appRouter.use("/brand", brandRouter);
 appRouter.use("/product", productRouter);
 appRouter.use("/coupon", couponRouter);
 appRouter.use("/review", reviewRouter);
+appRouter.use('/cart', cartRouter)
 appRouter.use('/wishlist', wishlistRouter)
 appRouter.use('/address', addressRouter)
 
